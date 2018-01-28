@@ -6,7 +6,8 @@
         "node": "8.9.1",                
         "browsers": ["last 2 versions", "safari >= 7"]
       }
-    }]
+    }],
+    "react"
   ],
   "plugins": [
     "transform-runtime",
