@@ -1,5 +1,7 @@
-import renderApp from './app'
+import ReactDOM from 'react-dom'
 
-const content = renderApp()
+import App from './app'
 
-document.getElementById('root').innerHTML = content
+const container = document.getElementById('root')
+
+ReactDOM.hydrate(App, container)
