@@ -1,6 +1,5 @@
 import express from 'express'
 
-import { renderToString } from './utils/output'
 import renderApp from './app'
 
 const port = 3000
@@ -11,6 +10,18 @@ app.use(express.static('public'))
 
 app.get('/', function(req, res) {
   const content = renderApp()
-  const html = renderToString(content)
+
+  const html = `
+    <html>
+      <head>
+        <title>RNG Stack Course 2018</title>
+      </head>
+      <body>
+        <div id="root">${content}</div>
+        <script src="/build/client.bundle.js"></script>
+      </body>
+    </html>
+  `
+
   res.send(html)
 })
