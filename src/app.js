@@ -1,7 +1,8 @@
 import React from 'react'
+import TimerApp from './modules/timer/TimerApp'
 
 function App() {
-  return <div>Rendered by React using JSX</div>
+  return <TimerApp />
 }
 
 export default App
