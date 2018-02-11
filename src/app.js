@@ -1,7 +1,8 @@
 import React from 'react'
+import ToDoApp from './modules/todo/ToDoApp'
 
 function App() {
-  return <div>Rendered by React using JSX</div>
+  return <ToDoApp />
 }
 
 export default App
