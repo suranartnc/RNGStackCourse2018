@@ -1,7 +1,8 @@
 import React from 'react'
+import DictApp from './modules/dictionary/DictApp'
 
 function App() {
-  return <div>Rendered by React using JSX</div>
+  return <DictApp />
 }
 
 export default App
