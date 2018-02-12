@@ -1,7 +1,8 @@
 import React from 'react'
+import BlogApp from './modules/Blog'
 
 function App() {
-  return <div>Rendered by React using JSX</div>
+  return <BlogApp />
 }
 
 export default App
