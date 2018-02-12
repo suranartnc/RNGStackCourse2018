@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Route, Link } from 'react-router-dom'
+
 import HomePage from '../Blog/pages/HomePage'
 import EntryPage from '../Blog/pages/EntryPage'
 import AboutPage from '../Blog/pages/AboutPage'
@@ -39,22 +41,22 @@ function BlogApp() {
   return (
     <div style={styles.wrapper}>
       <div style={styles.logo}>
-        <a href="/">My Blog App</a>
+        <Link to="/">My Blog App</Link>
       </div>
 
       <nav style={styles.nav}>
-        <a href="/" style={styles.navLink}>
+        <Link to="/" style={styles.navLink}>
           Home
-        </a>
-        <a href="/about" style={styles.navLink}>
+        </Link>
+        <Link to="/about" style={styles.navLink}>
           About
-        </a>
+        </Link>
       </nav>
 
       <div style={styles.main}>
-        <HomePage />
-        <EntryPage />
-        <AboutPage />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/entry" component={EntryPage} />
+        <Route exact path="/about" component={AboutPage} />
       </div>
     </div>
   )
