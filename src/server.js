@@ -2,8 +2,10 @@ import express from 'express'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import App from './app'
+import store from './modules/Blog/redux/store'
 
 const port = 3000
 const app = express()
@@ -15,9 +17,11 @@ app.get('*', function(req, res) {
   const context = {}
 
   const AppWithRouter = (
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
   )
 
   const content = ReactDOM.renderToString(AppWithRouter)

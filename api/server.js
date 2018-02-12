@@ -7,6 +7,11 @@ var server = jsonServer.create()
 var router = jsonServer.router(db())
 
 server.use(jsonServer.defaults())
+server.use(function(req, res, next) {
+  setTimeout(() => {
+    next()
+  }, 500)
+})
 server.use(router)
 
 server.listen(port)
