@@ -6,6 +6,7 @@
   "scripts": {
     "server": "nodemon index.js",
     "webpack": "webpack --watch",
+    "api": "node ./api/server.js",
     "build": "webpack -p",
     "start": "node index.js"
   },
@@ -41,6 +42,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
+    "faker": "^4.1.0",
+    "json-server": "^0.12.1",
     "nodemon": "^1.14.11",
     "prettier": "^1.9.2",
     "webpack": "^3.10.0"
