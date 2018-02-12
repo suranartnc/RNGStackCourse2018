@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Router, Route, Link } from '../../lib/router'
+
 import HomePage from '../Blog/pages/HomePage'
 import EntryPage from '../Blog/pages/EntryPage'
 import AboutPage from '../Blog/pages/AboutPage'
@@ -37,26 +39,28 @@ const styles = {
 
 function BlogApp() {
   return (
-    <div style={styles.wrapper}>
-      <div style={styles.logo}>
-        <a href="/">My Blog App</a>
-      </div>
+    <Router>
+      <div style={styles.wrapper}>
+        <div style={styles.logo}>
+          <Link to="/">My Blog App</Link>
+        </div>
 
-      <nav style={styles.nav}>
-        <a href="/" style={styles.navLink}>
-          Home
-        </a>
-        <a href="/about" style={styles.navLink}>
-          About
-        </a>
-      </nav>
+        <nav style={styles.nav}>
+          <Link to="/" style={styles.navLink}>
+            Home
+          </Link>
+          <Link to="/about" style={styles.navLink}>
+            About
+          </Link>
+        </nav>
 
-      <div style={styles.main}>
-        <HomePage />
-        <EntryPage />
-        <AboutPage />
+        <div style={styles.main}>
+          <Route path="/" component={HomePage} />
+          <Route path="/entry" component={EntryPage} />
+          <Route path="/about" component={AboutPage} />
+        </div>
       </div>
-    </div>
+    </Router>
   )
 }
 
