@@ -9,11 +9,13 @@ const styles = {
   }
 }
 
-export default function EntryPage() {
+export default function EntryPage(props) {
   return (
     <article style={styles.article}>
-      <h1>Title</h1>
-      <p style={styles.body}>This is body.</p>
+      <h1>Title of Entry ID: {props.match.params.id}</h1>
+      <p style={styles.body}>
+        This is body of Entry ID: {props.match.params.id}
+      </p>
     </article>
   )
 }

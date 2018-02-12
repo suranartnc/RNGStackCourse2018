@@ -6,7 +6,7 @@ export default function HomePage() {
     <div>
       <p>This is homepage.</p>
       <p>&nbsp;</p>
-      <Link to="/entry">Entry page</Link>
+      <Link to="/entry/1234">Link to Entry ID: 1234</Link>
     </div>
   )
 }
