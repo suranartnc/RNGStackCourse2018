@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { Link } from '../routes'
 import Layout from '../components/Layout'
+import page from '../hocs/page'
 
-export default function HomePage() {
+function HomePage() {
   return (
     <Layout>
       <p>Home Page</p>
@@ -14,3 +16,5 @@ export default function HomePage() {
     </Layout>
   )
 }
+
+export default page(HomePage)
