@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
-    "webpack": "webpack --watch",
-    "build": "webpack -p",
-    "start": "node index.js"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -24,22 +23,16 @@
   },
   "homepage": "https://github.com/suranartnc/RNGStackCourse2018#readme",
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "express": "^4.16.2"
+    "next": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.1.2",
-    "babel-loader": "^7.1.2",
     "eslint": "^4.14.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
-    "nodemon": "^1.14.11",
-    "prettier": "^1.9.2",
-    "webpack": "^3.10.0"
+    "prettier": "^1.9.2"
   }
 }
