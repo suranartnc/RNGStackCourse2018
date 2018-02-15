@@ -1,13 +1,10 @@
 import React from 'react'
-import { Link } from '../routes'
+import Layout from '../components/Layout'
 
 export default function AboutPage() {
   return (
-    <div>
+    <Layout>
       <p>About Page</p>
-      <Link route="home">
-        <a>Go to Home page</a>
-      </Link>
-    </div>
+    </Layout>
   )
 }

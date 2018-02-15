@@ -1,16 +1,11 @@
 import React from 'react'
-import { Link } from '../routes'
+import Layout from '../components/Layout'
 
 export default function HomePage(props) {
   return (
-    <div>
+    <Layout>
       <p>Entry Page</p>
       <p>ID: {props.url.query.id}</p>
-      <p>
-        <Link route="home">
-          <a>Go to Home page</a>
-        </Link>
-      </p>
-    </div>
+    </Layout>
   )
 }

@@ -1,3 +1,5 @@
+require('isomorphic-unfetch')
+
 const { createServer } = require('http')
 const next = require('next')
 const routes = require('./routes')
