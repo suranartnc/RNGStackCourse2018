@@ -4,4 +4,4 @@
 // because those scripts will be bundled using babel-loader via Webpack
 
 require('babel-core/register')
-require('./src/server')
+require('./src')
