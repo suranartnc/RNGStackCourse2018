@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { getEntries } from '../redux/store'
+
 function HomePage({ entryList }) {
   return (
     <ul>
@@ -18,7 +20,7 @@ function HomePage({ entryList }) {
 
 class HomePageContainer extends React.Component {
   componentDidMount() {
-    // Do something here...
+    this.props.getEntries()
   }
   render() {
     return <HomePage entryList={this.props.entryList} />
@@ -31,4 +33,4 @@ function selectStateFromStore(allState) {
   }
 }
 
-export default connect(selectStateFromStore)(HomePageContainer)
+export default connect(selectStateFromStore, { getEntries })(HomePageContainer)
