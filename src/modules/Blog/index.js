@@ -18,8 +18,14 @@ const styles = {
     fontWeight: 'bold'
   },
   logoLink: {
-    color: '#666',
-    textDecoration: 'none'
+    light: {
+      color: 'grey',
+      textDecoration: 'none'
+    },
+    dark: {
+      color: 'black',
+      textDecoration: 'none'
+    }
   },
   nav: {
     display: 'flex',
@@ -37,29 +43,64 @@ const styles = {
   }
 }
 
-function BlogApp() {
-  return (
-    <div style={styles.wrapper}>
-      <div style={styles.logo}>
-        <Link to="/">My Blog App</Link>
-      </div>
+const defaultTheme = {
+  color: 'light'
+}
 
-      <nav style={styles.nav}>
-        <Link to="/" style={styles.navLink}>
-          Home
-        </Link>
-        <Link to="/about" style={styles.navLink}>
-          About
-        </Link>
-      </nav>
+const ThemeContext = React.createContext(defaultTheme)
 
-      <div style={styles.main}>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/entry/:id" component={EntryPage} />
-        <Route exact path="/about" component={AboutPage} />
-      </div>
-    </div>
-  )
+class BlogApp extends React.Component {
+  toggleColor = () => {
+    this.setState({
+      color: this.state.color === 'light' ? 'dark' : 'light'
+    })
+  }
+
+  state = {
+    ...defaultTheme,
+    toggleColor: this.toggleColor
+  }
+
+  render() {
+    return (
+      <ThemeContext.Provider value={this.state}>
+        <div style={styles.wrapper}>
+          <div style={styles.logo}>
+            <ThemeContext.Consumer>
+              {({ color }) => (
+                <Link to="/" style={styles.logoLink[color]}>
+                  My Blog App
+                </Link>
+              )}
+            </ThemeContext.Consumer>
+          </div>
+
+          <nav style={styles.nav}>
+            <Link to="/" style={styles.navLink}>
+              Home
+            </Link>
+            <Link to="/about" style={styles.navLink}>
+              About
+            </Link>
+          </nav>
+
+          <ThemeContext.Consumer>
+            {({ toggleColor }) => (
+              <div>
+                <button onClick={toggleColor}>Switch Theme</button>
+              </div>
+            )}
+          </ThemeContext.Consumer>
+
+          <div style={styles.main}>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/entry/:id" component={EntryPage} />
+            <Route exact path="/about" component={AboutPage} />
+          </div>
+        </div>
+      </ThemeContext.Provider>
+    )
+  }
 }
 
 export default BlogApp
