@@ -50,15 +50,27 @@ const defaultTheme = {
 const ThemeContext = React.createContext(defaultTheme)
 
 class BlogApp extends React.Component {
-  toggleColor = () => {
-    this.setState({
-      color: this.state.color === 'light' ? 'dark' : 'light'
-    })
+  constructor(props) {
+    super(props)
+
+    this.toggleColor = () => {
+      this.setState({
+        color: this.state.color === 'light' ? 'dark' : 'light'
+      })
+    }
+
+    this.state = {
+      ...defaultTheme,
+      toggleColor: this.toggleColor
+    }
+
+    this.switchThemeButton = React.createRef()
   }
 
-  state = {
-    ...defaultTheme,
-    toggleColor: this.toggleColor
+  componentDidMount() {
+    setInterval(() => {
+      this.switchThemeButton.current.click()
+    }, 1000)
   }
 
   render() {
@@ -87,7 +99,9 @@ class BlogApp extends React.Component {
           <ThemeContext.Consumer>
             {({ toggleColor }) => (
               <div>
-                <button onClick={toggleColor}>Switch Theme</button>
+                <button ref={this.switchThemeButton} onClick={toggleColor}>
+                  Switch Theme
+                </button>
               </div>
             )}
           </ThemeContext.Consumer>
