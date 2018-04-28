@@ -1,24 +1,23 @@
-const apiFetcher = ({ dispatch }) => next => action => {
+export default store => next => action => {
   const { api, ...rest } = action
-  if (!api) {
-    return next(action)
-  }
+  if (!api) { return next(action) }
 
-  dispatch({
-    type: `${action.type}_REQUEST`,
-    loading: true
-  })
+  next({ type: `${action.type}_PENDING` })
 
-  return fetch(api.url)
+  return fetch(api)
     .then(res => res.json())
     .then(data => {
-      next({
+      return store.dispatch({
         ...rest,
-        data,
-        loading: false
+        type: `${action.type}_FULFILLED`,
+        data
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      return store.dispatch({
+        ...rest,
+        type: `${action.type}_REJECTED`,
+        error
+      })
+    })
 }
-
-export default apiFetcher
