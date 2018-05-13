@@ -8,7 +8,7 @@ const port = 3000
 const app = express()
 
 app.listen(port)
-app.use(express.static('public'))
+app.use(express.static('dist'))
 
 app.get('/', function(req, res) {
   const content = ReactDOM.renderToString(<App />)
@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
       </head>
       <body>
         <div id="root">${content}</div>
-        <script src="/build/client.bundle.js"></script>
+        <script src="/bundle.js"></script>
       </body>
     </html>
   `
