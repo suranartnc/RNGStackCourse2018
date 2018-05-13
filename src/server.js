@@ -12,16 +12,16 @@ app.get('/', function (req, res) {
   const content = App
 
   const html = `
-  <html>
-    <head>
-      <title>RNG Stack Course 2018</title>
-    </head>
-    <body>
-      <div id="root">${content}</div>
-      <script src="/bundle.js"></script>
+    <html>
+      <head>
+        <title>RNG Stack Course 2018</title>
+      </head>
+      <body>
+        <div id="root">${content}</div>
+        <script src="/bundle.js"></script>
       </body>
     </html>
   `
 
-  res.send(html)
+  res.end(html)
 })
