@@ -1,6 +1,4 @@
 import express from 'express'
-import React from 'react'
-import ReactDOM from 'react-dom/server'
 
 import App from './app'
 
@@ -10,17 +8,17 @@ const app = express()
 app.listen(port)
 app.use(express.static('dist'))
 
-app.get('/', function(req, res) {
-  const content = ReactDOM.renderToString(<App />)
+app.get('/', function (req, res) {
+  const content = App
 
   const html = `
-    <html>
-      <head>
-        <title>RNG Stack Course 2018</title>
-      </head>
-      <body>
-        <div id="root">${content}</div>
-        <script src="/bundle.js"></script>
+  <html>
+    <head>
+      <title>RNG Stack Course 2018</title>
+    </head>
+    <body>
+      <div id="root">${content}</div>
+      <script src="/bundle.js"></script>
       </body>
     </html>
   `
