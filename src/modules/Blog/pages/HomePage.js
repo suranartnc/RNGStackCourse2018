@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+const api = 'http://localhost:4000/posts'
+
 function HomePage({ entryList }) {
   return (
     <ul>
@@ -19,6 +21,10 @@ function HomePage({ entryList }) {
 class HomePageContainer extends React.Component {
   componentDidMount() {
     // Do something here...
+    this.props.dispatch({
+      type: 'ENTRIES_FETCH',
+      api
+    })
   }
   render() {
     return <HomePage entryList={this.props.entryList} />
