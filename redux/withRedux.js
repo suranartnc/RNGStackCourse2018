@@ -1,42 +1,48 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { initStore } from './store'
+import { initializeStore } from './store'
 
-export default ComposedComponent => {
-  return class WithRedux extends React.Component {
-    static async getInitialProps(ctx) {
-      const store = initStore()
+const isServer = typeof window === 'undefined'
+const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
 
-      let composedInitialProps = {}
-      if (ComposedComponent.getInitialProps) {
-        const ctxWithStore = {
-          ...ctx,
-          store
-        }
-        composedInitialProps = await ComposedComponent.getInitialProps(
-          ctxWithStore
-        )
+function getOrCreateStore(initialState) {
+  // Always make a new store if server, otherwise state is shared between requests
+  if (isServer) {
+    return initializeStore(initialState)
+  }
+
+  // Store in global variable if client
+  if (!window[__NEXT_REDUX_STORE__]) {
+    window[__NEXT_REDUX_STORE__] = initializeStore(initialState)
+  }
+  return window[__NEXT_REDUX_STORE__]
+}
+
+export default App => {
+  return class Redux extends React.Component {
+    static async getInitialProps(appContext) {
+      const reduxStore = getOrCreateStore()
+
+      // Provide the store to getInitialProps of pages
+      appContext.ctx.reduxStore = reduxStore
+
+      let appProps = {}
+      if (App.getInitialProps) {
+        appProps = await App.getInitialProps(appContext)
       }
 
-      const initialState = store.getState()
-
       return {
-        initialState,
-        ...composedInitialProps
+        ...appProps,
+        initialReduxState: reduxStore.getState()
       }
     }
 
     constructor(props) {
       super(props)
-      this.store = initStore(this.props.initialState)
+      this.reduxStore = getOrCreateStore(props.initialReduxState)
     }
 
     render() {
-      return (
-        <Provider store={this.store}>
-          <ComposedComponent {...this.props} />
-        </Provider>
-      )
+      return <App {...this.props} reduxStore={this.reduxStore} />
     }
   }
 }

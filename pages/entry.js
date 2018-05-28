@@ -1,11 +1,12 @@
 import React from 'react'
-import Layout from '../components/Layout'
 
-export default function HomePage(props) {
+function EntryPage(props) {
   return (
-    <Layout>
+    <div>
       <p>Entry Page</p>
       <p>ID: {props.url.query.id}</p>
-    </Layout>
+    </div>
   )
 }
+
+export default EntryPage

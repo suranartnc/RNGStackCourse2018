@@ -1,10 +1,11 @@
 import React from 'react'
-import Layout from '../components/Layout'
 
-export default function AboutPage() {
+function AboutPage() {
   return (
-    <Layout>
+    <div>
       <p>About Page</p>
-    </Layout>
+    </div>
   )
 }
+
+export default AboutPage
