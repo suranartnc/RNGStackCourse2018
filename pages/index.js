@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Head from 'next/head'
 
 import { Link } from '@router'
 
@@ -31,6 +32,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Blog App powered by Next.js</title>
+        </Head>
         <EntryList entries={this.props.entries} />
       </div>
     )
