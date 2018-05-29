@@ -1,12 +1,23 @@
-const nextRoutes = require('next-routes')
-const routes = (module.exports = nextRoutes())
+const nextRoutes = require('next-routes')()
 
-// API
-// routes.add(route_name, pattern = /name, page_filename = name)
+const routes = [
+  {
+    name: 'home',
+    pattern: '/',
+    page: 'index'
+  },
+  {
+    name: 'about',
+    pattern: '/about/',
+  },
+  {
+    name: 'entry',
+    pattern: '/:id(\\d+)/',
+  }
+]
 
-// Example
-// routes.add('article', '/article/:id(\\d+)')
+routes.forEach(function ({ name, pattern, page }) {
+  nextRoutes.add(name, pattern, page)
+})
 
-routes.add('home', '/', 'index')
-routes.add('about', '/about/')
-routes.add('entry', '/:id(\\d+)/')
+module.exports = nextRoutes
