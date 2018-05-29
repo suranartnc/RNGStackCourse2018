@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from '../routes'
+import { Link } from '@router'
 import LoadingIndicator from './LoadingIndicator'
 
 export default function Layout({ children }) {
@@ -10,16 +10,16 @@ export default function Layout({ children }) {
       <LoadingIndicator />
 
       <div className="logo">
-        <Link to="home">
+        <Link route="home">
           <a>My Blog App</a>
         </Link>
       </div>
 
       <nav>
-        <Link to="home">
+        <Link route="home">
           <a>Home</a>
         </Link>
-        <Link to="about">
+        <Link route="about">
           <a>About</a>
         </Link>
       </nav>

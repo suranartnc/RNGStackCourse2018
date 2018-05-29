@@ -25,6 +25,7 @@
   "homepage": "https://github.com/suranartnc/RNGStackCourse2018#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-plugin-module-resolver": "^3.1.1",
     "next": "^6.0.3",
     "next-routes": "^1.4.2",
     "nprogress": "^0.2.0",

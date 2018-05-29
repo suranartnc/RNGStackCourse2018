@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 
-import { Link } from '../routes'
+import { Link } from '@router'
 
 function EntryList({ entries }) {
   return (
     <ul>
-      {entries.map(function(entry) {
+      {entries.map(function (entry) {
         return (
           <li key={entry.id}>
             <Link route="entry" params={{ id: entry.id }}>
