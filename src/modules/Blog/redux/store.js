@@ -30,4 +30,6 @@ const rootReducer = combineReducers({
 
 const enhancer = applyMiddleware(apiFetcher)
 
-export default createStore(rootReducer, enhancer)
+export default function initializeStore(preloadedState = {}) {
+  return createStore(rootReducer, preloadedState, enhancer)
+}

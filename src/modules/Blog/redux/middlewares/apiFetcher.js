@@ -1,6 +1,8 @@
 export default store => next => action => {
   const { api, ...rest } = action
-  if (!api) { return next(action) }
+  if (!api) {
+    return next(action)
+  }
 
   next({ type: `${action.type}_PENDING` })
 

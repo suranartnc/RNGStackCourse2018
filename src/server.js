@@ -1,3 +1,4 @@
+import 'isomorphic-unfetch'
 import express from 'express'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
@@ -5,7 +6,7 @@ import { StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import App from './app'
-import store from './modules/Blog/redux/store'
+import initializeStore from './modules/Blog/redux/store'
 
 const port = 3000
 const app = express()
@@ -13,8 +14,10 @@ const app = express()
 app.listen(port)
 app.use(express.static('public'))
 
-app.get('*', function(req, res) {
+app.get('*', async function(req, res) {
   const context = {}
+
+  const store = initializeStore()
 
   const AppWithRouter = (
     <Provider store={store}>
@@ -23,6 +26,14 @@ app.get('*', function(req, res) {
       </StaticRouter>
     </Provider>
   )
+
+  // Fetch initial data
+  await store.dispatch({
+    type: 'ENTRIES_FETCH',
+    api: 'http://localhost:4000/posts'
+  })
+
+  const preloadedState = store.getState()
 
   const content = ReactDOM.renderToString(AppWithRouter)
 
@@ -49,6 +60,9 @@ app.get('*', function(req, res) {
       </head>
       <body>
         <div id="root">${content}</div>
+        <script type="text/javascript">
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)};
+        </script>
         <script src="/build/client.bundle.js"></script>
       </body>
     </html>

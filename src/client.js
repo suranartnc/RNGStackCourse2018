@@ -4,9 +4,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import App from './app'
-import store from './modules/Blog/redux/store'
+import initializeStore from './modules/Blog/redux/store'
 
 const container = document.getElementById('root')
+const store = initializeStore(window.__PRELOADED_STATE__)
 
 const AppWithRouter = (
   <Provider store={store}>
