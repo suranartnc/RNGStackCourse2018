@@ -1,19 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 
 import { Link } from '@router'
 import LoadingIndicator from './LoadingIndicator'
-
-injectGlobal`
-  body {
-    font-size: 16px;
-  }
-  a {
-    color: black;
-    text-decoration: none;
-  }
-`
 
 const Wrapper = styled.div`
   max-width: 1024px;
