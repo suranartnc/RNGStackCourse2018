@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Breadcrumb } from 'antd'
 
 import { Link } from '@router'
 import LoadingIndicator from './LoadingIndicator'
@@ -22,22 +23,35 @@ const Logo = styled.div`
   }
 `
 
-const Nav = styled.nav`
-  display: flex;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-
-  a {
-    padding: 10px 15px;
-    color: #666;
-    text-decoration: none;
-  }
-`
-
 const Main = styled.main`
   margin-top: 50px;
   padding: 0px 15px;
 `
+
+const StyledNavigation = styled(Navigation)`
+  a {
+    color: gray;
+    font-size: 16px;
+  }
+`
+
+function Navigation({ className }) {
+  return (
+    <Breadcrumb className={className} separator=">">
+      <Breadcrumb.Item>
+        <Link route="home">
+          <a>Home</a>
+        </Link>
+      </Breadcrumb.Item>
+
+      <Breadcrumb.Item>
+        <Link route="about">
+          <a>About</a>
+        </Link>
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  )
+}
 
 export default function Layout({ children }) {
   return (
@@ -46,18 +60,13 @@ export default function Layout({ children }) {
 
       <Logo>
         <Link route="home">
-          <a>My Blog App</a>
+          <a>
+            <img src="/static/images/react.svg" width="100" />
+          </a>
         </Link>
       </Logo>
 
-      <Nav>
-        <Link route="home">
-          <a>Home</a>
-        </Link>
-        <Link route="about">
-          <a>About</a>
-        </Link>
-      </Nav>
+      <StyledNavigation />
 
       <Main>{children}</Main>
     </Wrapper>
